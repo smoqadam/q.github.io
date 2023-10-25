@@ -1,1 +1,79 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Centers horizontally */
+            height: 100%;
+        }
+
+        .quote {
+            /* width: 60%; */
+            font-size: 25px;
+            font-family: Arial;
+        }
+
+        .author {
+            font-family: Arial;
+
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .header {
+            display: flex;
+            /* flex-direction: column;/ */
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        span {
+            margin: 5px ;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <span>using <a href="Zenquotes.io">Zenquotes.io</a></span>
+        <span><a href="https://github.com/smoqadam/randomquote">source code</a></span>
+        
+    </div>
+
+    <div class="content">
+        <div class="quote"></div>
+        <div class="author"></div>
+    </div>
+
+    <script>
+        (function () {
+            const url = 'https://corsproxy.io/?' + encodeURIComponent('https://zenquotes.io/api/random');
+            fetch(url)
+                .then(res => {
+                    return res.json();
+                }).then((data) => {
+                    console.log(data);
+                    document.querySelector('.quote').innerText = data[0].q;
+                    document.querySelector('.author').innerText = data[0].a;
+                })
+        })();
+    </script>
+</body>
+
+</html>
